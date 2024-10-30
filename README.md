@@ -1,3 +1,4 @@
+
 Caso de Teste 1: Criar Usuário
 Objetivo: Verificar se o sistema permite a criação de um novo usuário com um nome válido e rejeita entradas inválidas.
 
