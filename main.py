@@ -17,7 +17,6 @@ def criar_usuario(nome):
 
     usuarios.append(usuario)
     proximo_id_usuario += 1
-    print(usuarios[len(usuarios) - 1])
 
 def criar_postagem(usuario, texto):
     pass
