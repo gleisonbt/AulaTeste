@@ -7,7 +7,17 @@ proximo_id_postagem = 1
 # funções
 
 def criar_usuario(nome):
-    pass
+    global proximo_id_usuario
+    usuario = {
+        'id': proximo_id_usuario,
+        'nome': nome,
+        'seguidores': [],
+        'seguindo': []
+    }
+
+    usuarios.append(usuario)
+    proximo_id_usuario += 1
+    print(usuarios[len(usuarios) - 1])
 
 def criar_postagem(usuario, texto):
     pass
@@ -42,7 +52,7 @@ def exibir_menu():
 
         if opcao == "1":
             nome = input("Digite o nome do usuário: ")
-            # criar_usuario(nome)
+            criar_usuario(nome)
             print("Usuário criado com sucesso!")
         
         elif opcao == "2":
@@ -78,4 +88,4 @@ def exibir_menu():
             print("Opção inválida. Tente novamente.")
 
 
-exibir_menu()
+#exibir_menu()
