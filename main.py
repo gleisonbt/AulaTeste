@@ -40,7 +40,7 @@ def encontrar_usuario_por_id(user_id):
     return usuarios[user_id - 1]
 
 def encontrar_postagem_por_id(post_id):
-    pass
+    return postagens[post_id - 1]
 
 # menu
 def exibir_menu():

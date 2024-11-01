@@ -22,3 +22,11 @@ def testaEncontrarUsuarioPorId():
        'seguidores':[],
        'seguindo':[] 
     }
+
+def testaEncontrarPostagemPorId():
+    criar_postagem(2,"Humildade sempre")
+    assert encontrar_postagem_por_id(2) == {
+        'id':2,
+        'usuario':2,
+        'texto':'Humildade sempre'
+    }
