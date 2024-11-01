@@ -37,7 +37,7 @@ def comentar_postagem(usuario, postagem, texto):
     pass
 
 def encontrar_usuario_por_id(user_id):
-    pass
+    return usuarios[user_id - 1]
 
 def encontrar_postagem_por_id(post_id):
     pass
