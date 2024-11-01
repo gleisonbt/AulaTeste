@@ -19,7 +19,13 @@ def criar_usuario(nome):
     proximo_id_usuario += 1
 
 def criar_postagem(usuario, texto):
-    pass
+    global proximo_id_postagem
+    postagem = {'id': proximo_id_postagem,
+                'usuario': usuario,
+                'texto': texto
+               }
+    postagens.append(postagem)
+    proximo_id_postagem += 1
 
 def seguir_usuario(usuario_seguidor, usuario_a_seguir):
     pass
