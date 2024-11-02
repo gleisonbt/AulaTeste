@@ -14,6 +14,9 @@ def testaCriarUsuario():
         'id':1, 'nome':'Gleison',
          'seguidores':[], 'seguindo':[]}
 
+def testaCriarPostagemSemUsuario():
+    pass
+
 def testaCriarPostagem():
     criar_postagem(1, 'Ola pessoas')
     assert postagens[proximo_id_postagem - 2] == {
