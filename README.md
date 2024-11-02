@@ -1,100 +1,99 @@
-# Caso de Teste 1: Criar Usuário
+# Documentação de Testes - Sistema de Rede Social
 
-**Objetivo**: Verificar se o sistema permite a criação de um novo usuário com um nome válido e rejeita entradas inválidas.
+## Sumário de Casos de Teste
 
-### Teste 1.1 - Criar Usuário com Nome Válido
-- **Entrada**: Nome = "Alice"
-- **Procedimento**: Chamar `criar_usuario("Alice")`.
-- **Resultado Esperado**: Usuário criado com ID único, nome "Alice" e listas vazias de seguidores e seguidos.
-
-### Teste 1.2 - Criar Usuário com Nome em Branco
-- **Entrada**: Nome = ""
-- **Procedimento**: Chamar `criar_usuario("")`.
-- **Resultado Esperado**: Erro retornado indicando que o nome não pode estar em branco.
+1. [Criar Usuário](#1-criar-usuário)
+2. [Criar Postagem](#2-criar-postagem)
+3. [Seguir Usuário](#3-seguir-usuário)
+4. [Curtir Postagem](#4-curtir-postagem)
+5. [Comentar em Postagem](#5-comentar-em-postagem)
 
 ---
 
-# Caso de Teste 2: Criar Postagem
+## 1. Criar Usuário
 
-**Objetivo**: Verificar se o sistema permite a criação de postagens para um usuário válido e rejeita entradas inválidas.
+### Caso de Teste: `test_criar_usuario_valido`
+**Objetivo**: Verificar se o sistema cria um usuário com nome válido.  
+**Entrada**: Nome do usuário: "Alice"  
+**Saída Esperada**: Usuário criado com ID único, sem seguidores e sem usuários seguidos.
 
-### Teste 2.1 - Criar Postagem com Texto Válido
-- **Pré-condição**: Usuário com ID 1 existente.
-- **Entrada**: Usuário ID = 1, Texto = "Olá, mundo!"
-- **Procedimento**: Chamar `criar_postagem(usuario, "Olá, mundo!")`.
-- **Resultado Esperado**: Postagem criada com ID único, autor ID = 1 e texto "Olá, mundo!".
-
-### Teste 2.2 - Criar Postagem com Texto em Branco
-- **Pré-condição**: Usuário com ID 1 existente.
-- **Entrada**: Usuário ID = 1, Texto = ""
-- **Procedimento**: Chamar `criar_postagem(usuario, "")`.
-- **Resultado Esperado**: Erro retornado indicando que o texto não pode estar em branco.
+### Caso de Teste: `test_criar_usuario_nome_em_branco`
+**Objetivo**: Verificar o comportamento do sistema ao tentar criar um usuário com o nome em branco.  
+**Entrada**: Nome do usuário: ""  
+**Saída Esperada**: Lançar um `IndexError`.
 
 ---
 
-# Caso de Teste 3: Seguir Usuário
+## 2. Criar Postagem
 
-**Objetivo**: Verificar se o sistema permite que um usuário siga outro e impede seguir o mesmo usuário mais de uma vez.
+### Caso de Teste: `test_criar_postagem_valida`
+**Objetivo**: Verificar se uma postagem é criada corretamente para um usuário existente.  
+**Entrada**: ID do usuário: 1, Texto: "Olá, mundo!"  
+**Saída Esperada**: Postagem criada com ID único associada ao usuário 1, contendo o texto fornecido.
 
-### Teste 3.1 - Seguir Usuário com IDs Válidos
-- **Pré-condição**: Dois usuários existentes, ID 1 e ID 2.
-- **Entrada**: Usuário ID = 1, Usuário a seguir ID = 2.
-- **Procedimento**: Chamar `seguir_usuario(usuario1, usuario2)`.
-- **Resultado Esperado**: Usuário 1 começa a seguir o usuário 2, confirmando a ação com mensagem.
+### Caso de Teste: `test_criar_postagem_texto_em_branco`
+**Objetivo**: Verificar o comportamento do sistema ao tentar criar uma postagem com texto em branco.  
+**Entrada**: ID do usuário: 1, Texto: ""  
+**Saída Esperada**: Lançar um `IndexError`.
 
-### Teste 3.2 - Tentar Seguir o Mesmo Usuário Novamente
-- **Pré-condição**: Usuário 1 já está seguindo o usuário 2.
-- **Entrada**: Usuário ID = 1, Usuário a seguir ID = 2.
-- **Procedimento**: Chamar `seguir_usuario(usuario1, usuario2)` novamente.
-- **Resultado Esperado**: Mensagem informando que o usuário 1 já está seguindo o usuário 2.
-
-### Teste 3.3 - Seguir Usuário Inexistente
-- **Entrada**: Usuário ID = 1, Usuário a seguir ID = 999 (inexistente).
-- **Procedimento**: Chamar `seguir_usuario(usuario1, usuario_inexistente)`.
-- **Resultado Esperado**: Erro indicando que o usuário a ser seguido não foi encontrado.
+### Caso de Teste: `test_criar_postagem_usuario_inexistente`
+**Objetivo**: Verificar o comportamento do sistema ao tentar criar uma postagem para um usuário inexistente.  
+**Entrada**: ID do usuário: 999, Texto: "Postagem de usuário inexistente"  
+**Saída Esperada**: Lançar um `IndexError`.
 
 ---
 
-# Caso de Teste 4: Curtir Postagem
+## 3. Seguir Usuário
 
-**Objetivo**: Verificar se o sistema permite que um usuário curta uma postagem e impede que a mesma postagem seja curtida duas vezes pelo mesmo usuário.
+### Caso de Teste: `test_seguir_usuario_valido`
+**Objetivo**: Verificar se um usuário pode seguir outro usuário existente.  
+**Entrada**: ID do seguidor: 1, ID do usuário a seguir: 2  
+**Saída Esperada**: Usuário 1 segue usuário 2, e o usuário 2 tem o usuário 1 como seguidor.
 
-### Teste 4.1 - Curtir Postagem com IDs Válidos
-- **Pré-condição**: Usuário 1 e postagem de ID 1 existente.
-- **Entrada**: Usuário ID = 1, Postagem ID = 1.
-- **Procedimento**: Chamar `curtir_postagem(usuario, postagem)`.
-- **Resultado Esperado**: Usuário 1 curte a postagem, com confirmação da ação.
+### Caso de Teste: `test_seguir_usuario_mesmo_usuario`
+**Objetivo**: Verificar o comportamento ao tentar seguir a si mesmo.  
+**Entrada**: ID do seguidor: 1, ID do usuário a seguir: 1  
+**Saída Esperada**: Nenhuma ação de seguir é realizada; o usuário não deve seguir a si mesmo.
 
-### Teste 4.2 - Tentar Curtir a Mesma Postagem Novamente
-- **Pré-condição**: Usuário 1 já curtiu a postagem de ID 1.
-- **Entrada**: Usuário ID = 1, Postagem ID = 1.
-- **Procedimento**: Chamar `curtir_postagem(usuario, postagem)` novamente.
-- **Resultado Esperado**: Mensagem informando que o usuário já curtiu a postagem.
-
-### Teste 4.3 - Curtir Postagem Inexistente
-- **Entrada**: Usuário ID = 1, Postagem ID = 999 (inexistente).
-- **Procedimento**: Chamar `curtir_postagem(usuario, postagem_inexistente)`.
-- **Resultado Esperado**: Erro indicando que a postagem não foi encontrada.
+### Caso de Teste: `test_seguir_usuario_inexistente`
+**Objetivo**: Verificar o comportamento ao tentar seguir um usuário inexistente.  
+**Entrada**: ID do seguidor: 1, ID do usuário a seguir: 999  
+**Saída Esperada**: Lançar um `IndexError`.
 
 ---
 
-# Caso de Teste 5: Comentar em Postagem
+## 4. Curtir Postagem
 
-**Objetivo**: Verificar se o sistema permite que um usuário comente em uma postagem válida e impede comentários em branco.
+### Caso de Teste: `test_curtir_postagem_valida`
+**Objetivo**: Verificar se um usuário pode curtir uma postagem existente.  
+**Entrada**: ID do usuário: 1, ID da postagem: 1  
+**Saída Esperada**: A postagem tem o usuário 1 como curtidor.
 
-### Teste 5.1 - Comentar em Postagem com Texto Válido
-- **Pré-condição**: Usuário 1 e postagem de ID 1 existente.
-- **Entrada**: Usuário ID = 1, Postagem ID = 1, Texto = "Ótimo post!"
-- **Procedimento**: Chamar `comentar_postagem(usuario, postagem, "Ótimo post!")`.
-- **Resultado Esperado**: Comentário é adicionado à postagem com a mensagem de sucesso.
+### Caso de Teste: `test_curtir_mesma_postagem_novamente`
+**Objetivo**: Verificar se o sistema impede curtidas duplicadas na mesma postagem por um mesmo usuário.  
+**Entrada**: ID do usuário: 1, ID da postagem: 1  
+**Saída Esperada**: A postagem possui apenas uma curtida do usuário 1.
 
-### Teste 5.2 - Comentar em Postagem com Texto em Branco
-- **Pré-condição**: Usuário 1 e postagem de ID 1 existente.
-- **Entrada**: Usuário ID = 1, Postagem ID = 1, Texto = ""
-- **Procedimento**: Chamar `comentar_postagem(usuario, postagem, "")`.
-- **Resultado Esperado**: Erro informando que o comentário não pode estar em branco.
+### Caso de Teste: `test_curtir_postagem_inexistente`
+**Objetivo**: Verificar o comportamento ao tentar curtir uma postagem inexistente.  
+**Entrada**: ID do usuário: 1, ID da postagem: 999  
+**Saída Esperada**: Lançar um `IndexError`.
 
-### Teste 5.3 - Comentar em Postagem Inexistente
-- **Entrada**: Usuário ID = 1, Postagem ID = 999 (inexistente), Texto = "Comentário"
-- **Procedimento**: Chamar `comentar_postagem(usuario, postagem_inexistente, "Comentário")`.
-- **Resultado Esperado**: Erro informando que a postagem não foi encontrada.
+---
+
+## 5. Comentar em Postagem
+
+### Caso de Teste: `test_comentar_postagem_valida`
+**Objetivo**: Verificar se um usuário pode comentar em uma postagem existente.  
+**Entrada**: ID do usuário: 1, ID da postagem: 1, Texto do comentário: "Ótimo post!"  
+**Saída Esperada**: Comentário adicionado à postagem 1 com o texto fornecido.
+
+### Caso de Teste: `test_comentar_texto_em_branco`
+**Objetivo**: Verificar o comportamento ao tentar comentar com texto em branco.  
+**Entrada**: ID do usuário: 1, ID da postagem: 1, Texto do comentário: ""  
+**Saída Esperada**: Lançar um `ValueError`.
+
+### Caso de Teste: `test_comentar_postagem_inexistente`
+**Objetivo**: Verificar o comportamento ao tentar comentar em uma postagem inexistente.  
+**Entrada**: ID do usuário: 1, ID da postagem: 999, Texto do comentário: "Comentário"  
+**Saída Esperada**: Lançar um `IndexError`.
