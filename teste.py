@@ -25,5 +25,5 @@ def testaCriarPostagemValida():
 
 def testaCriarPostagemComUsuarioInexistente():
     #criar_postagem(3, "oie")
-
+    pass
 
