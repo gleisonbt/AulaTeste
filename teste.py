@@ -16,7 +16,7 @@ def testaCriarUsuario():
 
 def testaCriarPostagemComUsuarioInvalido():
     #criar_postagem(3) deve falhar
-    pass
+    criar_postagem(3, "oie")
 
 def testaCriarPostagem():
     criar_postagem(1, 'Ola pessoas')
