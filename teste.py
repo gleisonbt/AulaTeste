@@ -1,9 +1,16 @@
 from pytest import *
 from main import *
 
+def setup_function():
+    usuarios = []
+    postagens = []
+    proximo_id_usuario = 1
+    proximo_id_postagem = 1
+
 def testaCriarUsuario():
     criar_usuario("Gleison")
-    assert usuarios[proximo_id_usuario - 2] == {
+    print("lista usuarios: " + str(len(usuarios)))
+    assert usuarios[proximo_id_usuario - 1] == {
         'id':1, 'nome':'Gleison',
          'seguidores':[], 'seguindo':[]}
 
