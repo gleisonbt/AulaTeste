@@ -14,7 +14,8 @@ def testaCriarUsuario():
         'id':1, 'nome':'Gleison',
          'seguidores':[], 'seguindo':[]}
 
-def testaCriarPostagemSemUsuario():
+def testaCriarPostagemComUsuarioInvalido():
+    #criar_postagem(3) deve falhar
     pass
 
 def testaCriarPostagem():
