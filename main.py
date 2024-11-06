@@ -8,29 +8,22 @@ proximo_id_postagem = 1
 
 def criar_usuario(nome):
     global proximo_id_usuario
+    if nome == '':
+        raise Exception
     usuario = {
-        'id': proximo_id_usuario,
-        'nome': nome,
-        'seguidores': [],
-        'seguindo': []
-    }
-
+        'id':proximo_id_usuario,
+        'nome':nome,
+        'seguidores':[],
+        'seguindo':[]
+    }  
     usuarios.append(usuario)
     proximo_id_usuario += 1
 
+
 def criar_postagem(usuario, texto):
     global proximo_id_postagem
-    try:
-        encontrar_usuario_por_id(usuario) 
-        postagem = {'id': proximo_id_postagem,
-                    'usuario': usuario,
-                    'texto': texto
-                }
-        postagens.append(postagem)
-        proximo_id_postagem += 1
-    except IndexError as error:
-        print(error)
-
+    
+    
 def seguir_usuario(usuario_seguidor, usuario_a_seguir):
     pass
 

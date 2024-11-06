@@ -1,9 +1,9 @@
-from pytest import *
+import pytest
 from main import *
 
 def setup_function():
     usuarios.clear()
-    postagens.clear
+    postagens.clear()
     proximo_id_usuario = 1
     proximo_id_postagem = 1
 
@@ -13,17 +13,11 @@ def testaCriarUsuarioValido():
         'id':1, 'nome':'Gleison',
          'seguidores':[], 'seguindo':[]}
 
-
-def testaCriarPostagemValida():
-    criar_usuario('Gleison')
-    criar_postagem(1, 'Ola pessoas')
-    assert postagens[0] == {
-        'id':1, 'usuario': 1, 
-        'texto': 'Ola pessoas'
-    }
+def testaCriarUsuarioSemNome():
+    with pytest.raises(Exception) as error:
+        criar_usuario("")
 
 
-def testaCriarPostagemComUsuarioInexistente():
-    #criar_postagem(3, "oie")
-    pass
+
+
 
