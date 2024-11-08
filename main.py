@@ -22,7 +22,19 @@ def criar_usuario(nome):
 
 def criar_postagem(usuario, texto):
     global proximo_id_postagem
-    
+
+    try:
+        encontrar_usuario_por_id(usuario)
+        postagem = {
+            'id': proximo_id_postagem,
+            'usuario': usuario,
+            'mensagem': texto
+        }
+        postagens.append(postagem)
+        proximo_id_postagem += 1
+    except IndexError as error:
+        raise IndexError
+
     
 def seguir_usuario(usuario_seguidor, usuario_a_seguir):
     pass
