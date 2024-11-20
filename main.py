@@ -5,6 +5,15 @@ proximo_id_usuario = 1
 proximo_id_postagem = 1
 
 # funções
+def resetar():
+    global proximo_id_usuario
+    global proximo_id_postagem
+    global usuarios
+    global postagens
+    usuarios.clear()
+    postagens.clear()
+    proximo_id_usuario = 1
+    proximo_id_postagem = 1
 
 def criar_usuario(nome):
     global proximo_id_usuario
@@ -46,7 +55,10 @@ def comentar_postagem(usuario, postagem, texto):
     pass
 
 def encontrar_usuario_por_id(user_id):
-    return usuarios[user_id - 1]
+    for usuario in usuarios:
+        if usuario['id'] == user_id:
+            return usuario
+    raise IndexError
 
 def encontrar_postagem_por_id(post_id):
     return postagens[post_id - 1]

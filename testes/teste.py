@@ -1,26 +1,21 @@
 import pytest
 from main import *
 
-def setup_function():
-    usuarios.clear()
-    postagens.clear()
-    proximo_id_usuario = 1
-    proximo_id_postagem = 1
 
 def testaCriarUsuarioValido():
-    setup_function()
+    resetar()
     criar_usuario("Gleison")
     assert usuarios[0] == {
         'id':1, 'nome':'Gleison',
          'seguidores':[], 'seguindo':[]}
 
 def testaCriarUsuarioSemNome():
-    setup_function()
+    resetar()
     with pytest.raises(Exception) as error:
         criar_usuario("")
 
 def testaCriarPostagemValida():
-    setup_function()
+    resetar()
     criar_usuario("Maria")
     criar_postagem(1, "Olá Mundo")
 
@@ -29,18 +24,31 @@ def testaCriarPostagemValida():
     }
 
 def testaRetornaUsuarioPorId():
-    setup_function()
+    resetar()
     criar_usuario('juan')
-    usuario = encontrar_usuario_por_id(1)
+    criar_usuario('gleison')
+    usuario = encontrar_usuario_por_id(2)
     assert usuario == {
-        'id':1,
-        'nome':'juan',
+        'id':2,
+        'nome':'gleison',
         'seguidores':[],
         'seguindo':[]
     }
 
+def testaUsuariosInseridosNaLista():
+    resetar()
+    criar_usuario('jose')
+    criar_usuario('maria')
+    listaEsperada = [{
+        'id':1, 'nome':'jose', 'seguidores':[], 'seguindo':[]
+    },{
+        'id':2, 'nome':'maria', 'seguidores':[], 'seguindo':[]
+    }]
+
+    assert usuarios == listaEsperada
+
 def testaCriarPostagemUsuarioInexistente():
-    setup_function()
+    resetar()
     with pytest.raises(IndexError) as error:
         criar_postagem(1,'relou')
 
