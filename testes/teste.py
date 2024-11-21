@@ -23,6 +23,12 @@ def testaCriarPostagemValida():
         'id':1, 'usuario':1, 'mensagem': 'Olá Mundo'
     }
 
+def testCriarPostagemTextoEmBranco():
+    resetar()
+    criar_usuario('arthur')
+    with pytest.raises(Exception) as error:
+        criar_postagem(1,"")
+
 def testaRetornaUsuarioPorId():
     resetar()
     criar_usuario('juan')
@@ -52,6 +58,8 @@ def testaCriarPostagemUsuarioInexistente():
     with pytest.raises(IndexError) as error:
         criar_postagem(1,'relou')
 
+def testaSeguirUsuarioExistente():
+    pass
 
 
 

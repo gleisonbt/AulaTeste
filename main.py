@@ -32,6 +32,9 @@ def criar_usuario(nome):
 def criar_postagem(usuario, texto):
     global proximo_id_postagem
 
+    if texto == "":
+        raise Exception
+
     try:
         encontrar_usuario_por_id(usuario)
         postagem = {
