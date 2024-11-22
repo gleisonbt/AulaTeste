@@ -20,7 +20,8 @@ def testaCriarPostagemValida():
     criar_postagem(1, "Olá Mundo")
 
     assert postagens[0] == {
-        'id':1, 'usuario':1, 'mensagem': 'Olá Mundo'
+        'id':1, 'usuario':1, 'mensagem': 'Olá Mundo',
+        'curtidores':[]
     }
 
 def testCriarPostagemTextoEmBranco():

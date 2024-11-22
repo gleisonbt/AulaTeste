@@ -40,7 +40,8 @@ def criar_postagem(usuario, texto):
         postagem = {
             'id': proximo_id_postagem,
             'usuario': usuario,
-            'mensagem': texto
+            'mensagem': texto,
+            'curtidores':[]
         }
         postagens.append(postagem)
         proximo_id_postagem += 1
