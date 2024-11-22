@@ -59,7 +59,26 @@ def testaCriarPostagemUsuarioInexistente():
         criar_postagem(1,'relou')
 
 def testaSeguirUsuarioExistente():
-    pass
+    resetar()
+    criar_usuario('gleison')
+    criar_usuario('karen')
+    seguir_usuario(1,2)
+
+    assert usuarios[0]['seguindo'] == [2]
+    assert usuarios[1]['seguidores'] == [1]
+
+def testaSeguirUsuarioInexistente():
+    resetar()
+    criar_usuario('gleison')
+    with pytest.raises(Exception) as error:
+        seguir_usuario(1,4)
+
+def testaSeguirMesmoUsuario():
+    resetar()
+    criar_usuario('gleison')
+    with pytest.raises(Exception) as error:
+        seguir_usuario(1,1)
+
 
 
 

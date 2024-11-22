@@ -49,7 +49,11 @@ def criar_postagem(usuario, texto):
 
     
 def seguir_usuario(usuario_seguidor, usuario_a_seguir):
-    pass
+    if usuario_seguidor == usuario_a_seguir:
+        raise Exception
+
+    encontrar_usuario_por_id(usuario_seguidor)['seguindo'].append(usuario_a_seguir)
+    encontrar_usuario_por_id(usuario_a_seguir)['seguidores'].append(usuario_seguidor)
 
 def curtir_postagem(usuario, postagem):
     pass
