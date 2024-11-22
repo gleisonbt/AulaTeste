@@ -57,7 +57,7 @@ def seguir_usuario(usuario_seguidor, usuario_a_seguir):
     encontrar_usuario_por_id(usuario_a_seguir)['seguidores'].append(usuario_seguidor)
 
 def curtir_postagem(usuario, postagem):
-    pass
+    encontrar_postagem_por_id(postagem)['curtidores'].append(usuario)
 
 def comentar_postagem(usuario, postagem, texto):
     pass

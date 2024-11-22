@@ -80,6 +80,25 @@ def testaSeguirMesmoUsuario():
     with pytest.raises(Exception) as error:
         seguir_usuario(1,1)
 
+def testaCurtirPostagemValida():
+    resetar()
+    criar_usuario('gleison')
+    criar_usuario('jose')
+    criar_postagem(1, 'Acorda povo!')
+    curtir_postagem(2, 1)
+
+    assert postagens[0]['curtidores'] == [2]
+
+def testaCurtirPostagemNovamente():
+    resetar()
+    criar_usuario('gleison')
+    criar_usuario('jose')
+    criar_postagem(1, 'Adoro testar!')
+    curtir_postagem(2, 1)
+    with pytest.raises(Exception) as error:
+        curtir_postagem(2, 1)
+
+
 
 
 
