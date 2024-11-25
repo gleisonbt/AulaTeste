@@ -17,7 +17,7 @@
 **Entrada**: Nome do usuário: "Alice"  
 **Saída Esperada**: Usuário criado com ID único, sem seguidores e sem usuários seguidos.
 
-### Caso de Teste: `test_criar_usuario_nome_em_branco`
+### Caso de Teste: `test_criar_usuario_nome_em_branco`✅
 **Objetivo**: Verificar o comportamento do sistema ao tentar criar um usuário com o nome em branco.  
 **Entrada**: Nome do usuário: ""  
 **Saída Esperada**: Lançar um `IndexError`.
@@ -97,3 +97,8 @@
 **Objetivo**: Verificar o comportamento ao tentar comentar em uma postagem inexistente.  
 **Entrada**: ID do usuário: 1, ID da postagem: 999, Texto do comentário: "Comentário"  
 **Saída Esperada**: Lançar um `IndexError`.
+
+### Caso de Teste: `test_excluir_usuario`
+**Objetivo**: Verificar o comportamento ao excluir um usuario valido.  
+**Entrada**: ID do usuário: 1  
+**Saída Esperada**: Usuario excluido, postagens desse usuario excluidas, comentários e curtidas desse usuário excluídos.
