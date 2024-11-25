@@ -10,6 +10,8 @@
 
 ---
 
+### ======== 1 ponto ==============================
+
 ## 1. Criar Usuário
 
 ### Caso de Teste: `test_criar_usuario_valido` ✅
@@ -98,7 +100,9 @@
 **Entrada**: ID do usuário: 1, ID da postagem: 999, Texto do comentário: "Comentário"  
 **Saída Esperada**: Lançar um `IndexError`.
 
-### Caso de Teste: `test_excluir_usuario`
+### ============ 1 ponto ===========================
+
+### Caso de Teste: `test_excluir_usuario` - valor 1pt
 **Objetivo**: Verificar o comportamento ao excluir um usuario valido.  
 **Entrada**: ID do usuário: 1  
 **Saída Esperada**: Usuario excluido, postagens desse usuario excluidas, comentários e curtidas desse usuário excluídos.
